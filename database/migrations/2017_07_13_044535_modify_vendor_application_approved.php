@@ -4,17 +4,16 @@
 	use Illuminate\Database\Schema\Blueprint;
 	use Illuminate\Database\Migrations\Migration;
 
-	class CreatePasswordResetsTable extends Migration {
+	class ModifyVendorApplicationApproved extends Migration {
 		/**
 		 * Run the migrations.
 		 *
 		 * @return void
 		 */
 		public function up() {
-			Schema::create('password_resets', function (Blueprint $table) {
-				$table->string('email')->index();
-				$table->string('token');
-				$table->timestamp('created_at')->nullable();
+			Schema::table('vendor_applications', function (Blueprint $table) {
+				$table->integer('approved')->default(0)->change();
+				$table->integer('user')->unique()->change();
 			});
 		}
 
@@ -24,6 +23,6 @@
 		 * @return void
 		 */
 		public function down() {
-			Schema::dropIfExists('password_resets');
+			//
 		}
 	}

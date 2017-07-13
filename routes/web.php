@@ -1,18 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-use Illuminate\Support\Facades\App;
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -68,3 +55,25 @@ Route::post('register', [
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/invite', 'InviteController@index')->name('invite.index');
+
+Route::prefix('user-panel')->group(function() {
+	Route::get('/', function() {
+		return view('userPanel.index');
+	})->name('userpanel.index');
+
+	Route::get('create-store', function() {
+		return view('userPanel.createStore');
+	})->name('store.create.view');
+
+	Route::post('create-store', [
+		'uses' => 'UserPanel\CreateStoreController@process'
+	])->name('store.create');
+
+	Route::get('vendor-application', function() {
+		return view('userPanel.vendorApplication');
+	})->name('vendor.application');
+
+	Route::get('vendor-application/send', [
+		'uses' => 'UserPanel\VendorApplicationController@send',
+	])->name('vendor.application.send');
+});

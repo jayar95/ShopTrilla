@@ -4,8 +4,7 @@
 	use App\Http\Controllers\Controller;
 	use App\Invite;
 	use Illuminate\Http\Request;
-	use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-	use Symfony\Component\HttpKernel\Exception\HttpException;
+	use Illuminate\Support\Facades\Auth;
 
 	class InviteController extends Controller {
 		/**
@@ -21,16 +20,14 @@
 		 * @param Request $request
 		 */
 		public function send(Request $request) {
-			$token = $request->get('token');
+			$this->validate($request, [
+				'email' => 'required|email',
+			]);
 
-			if (!$token)
-				throw new BadRequestHttpException('Must include token to proceed');
-
-			$token = Invite::where('token', $token)->first();
-
-			if (!$token)
-				throw new HttpException('Invalid token!');
-
-			
+			$invite = Invite::create([
+				'email' => $request->get('email'),
+				'sender' => Auth::user(),
+				'token',
+			]);
 		}
 	}
