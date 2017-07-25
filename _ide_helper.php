@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.28 on 2017-07-11.
+ * Generated for Laravel 5.4.28 on 2017-07-25.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11554,6 +11554,114 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Indal\Markdown { 
+
+    class Facade {
+        
+        /**
+         * Parses a markdown string to HTML.
+         *
+         * @param string $markdown
+         * @return string 
+         * @static 
+         */ 
+        public static function parse($markdown)
+        {
+            return \Indal\Markdown\Parser::parse($markdown);
+        }
+        
+        /**
+         * Parses a single line of markdown to HTML.
+         *
+         * @param string $markdown
+         * @return string 
+         * @static 
+         */ 
+        public static function line($markdown)
+        {
+            return \Indal\Markdown\Parser::line($markdown);
+        }
+        
+        /**
+         * Escape any XSS attempts related to injecting JavaScript in
+         * anchor tags. Will only escape the string if the escape
+         * option is set to true in the config.
+         *
+         * @param string $markdown
+         * @return string 
+         * @static 
+         */ 
+        public static function escape($markdown)
+        {
+            return \Indal\Markdown\Parser::escape($markdown);
+        }
+        
+        /**
+         * Start capturing output to be parsed.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function begin()
+        {
+            \Indal\Markdown\Parser::begin();
+        }
+        
+        /**
+         * Stop capturing output, parse the string from
+         * markdown to HTML and return it. Throws an exception
+         * if outpout capturing hasn't been started yet.
+         *
+         * @throws \Indal\Markdown\Exceptions\InvalidTagException
+         * @return string 
+         * @static 
+         */ 
+        public static function end()
+        {
+            return \Indal\Markdown\Parser::end();
+        }
+        
+        /**
+         * Removes indentation according to the indentation of the first
+         * line, of the given markdown text. This prevents markdown
+         * from being rendered as code in unwanted places. Credit of
+         * this goes to Mohamed Said (@themsaid).
+         *
+         * @param string $markdown
+         * @return string 
+         * @static 
+         */ 
+        public static function removeLeadingWhitespace($markdown)
+        {
+            return \Indal\Markdown\Parser::removeLeadingWhitespace($markdown);
+        }
+         
+    }
+ 
+}
+
+namespace App\Facades { 
+
+    class PhotoUploader {
+        
+        /**
+         * 
+         *
+         * @param array $photos
+         * @param \App\Util\Model $model
+         * @param array $relation
+         * @return \App\Util\ArrayCollection 
+         * @static 
+         */ 
+        public static function process($photos, $model, $relation)
+        {
+            return \App\Util\PhotoUploader::process($photos, $model, $relation);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -13617,6 +13725,10 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Markdown extends \Indal\Markdown\Facade {}
+
+    class PhotoUploader extends \App\Facades\PhotoUploader {}
  
 }
 

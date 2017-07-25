@@ -23,6 +23,10 @@
 	 * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
 	 * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
 	 * @mixin \Eloquent
+	 * @property string $type
+	 * @property-read \App\Store $store
+	 * @property-read \App\VendorApplication $vendorApplication
+	 * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereType($value)
 	 */
 	class User extends Authenticatable {
 		use Notifiable;

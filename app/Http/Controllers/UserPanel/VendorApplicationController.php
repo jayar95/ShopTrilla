@@ -8,12 +8,13 @@
 
 	class VendorApplicationController extends Controller {
 		public function send() {
-			$vendorApplication = new VendorApplication();
-			$vendorApplication->user = Auth::user()->id;
+			$vendorApplication = VendorApplication::create([
+				'user' => Auth::user()->id,
+			]);
 			$vendorApplication->save();
 
 			Session::flash('success', 'Application sent successfully!');
 
-			return view('userPanel.vendorApplication');
+			return view('user-panel.vendorApplication');
 		}
 	}

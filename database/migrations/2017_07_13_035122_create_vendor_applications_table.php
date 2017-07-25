@@ -31,6 +31,6 @@
 		 * @return void
 		 */
 		public function down() {
-			//
+			Schema::dropIfExists('vendor_applications');
 		}
 	}

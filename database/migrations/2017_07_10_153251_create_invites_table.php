@@ -27,6 +27,6 @@
 		 * @return void
 		 */
 		public function down() {
-			Schema::dropIfExists('password_resets');
+			Schema::dropIfExists('invites');
 		}
 	}

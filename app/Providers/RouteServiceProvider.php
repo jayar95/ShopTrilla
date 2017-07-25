@@ -4,6 +4,7 @@
 
 	use Illuminate\Support\Facades\Route;
 	use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+	use Symfony\Component\Finder\Finder;
 
 	class RouteServiceProvider extends ServiceProvider {
 		/**
@@ -47,9 +48,16 @@
 		 * @return void
 		 */
 		protected function mapWebRoutes() {
+			$files = Finder::create()
+				->in(base_path('routes/web'))
+				->name('*.php');
+
 			Route::middleware('web')
 				->namespace($this->namespace)
-				->group(base_path('routes/web.php'));
+				->group(function () use ($files) {
+					foreach ($files as $file)
+						require $file->getRealPath();
+				});
 		}
 
 		/**
