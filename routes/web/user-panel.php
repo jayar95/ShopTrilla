@@ -9,7 +9,7 @@
 		})->name('store.create');
 
 		Route::post('create-store', [
-			'uses' => 'UserPanel\CreateStoreController@process'
+			'uses' => 'StoreController@create'
 		])->name('store.create');
 
 		Route::get('vendor-application', function() {
@@ -17,6 +17,6 @@
 		})->name('vendor.application');
 
 		Route::get('vendor-application/send', [
-			'uses' => 'UserPanel\VendorApplicationController@send',
+			'uses' => 'VendorController@sendApplication',
 		])->name('vendor.application.send');
 	});

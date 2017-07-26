@@ -21,8 +21,8 @@
 
 			$uploaded = new ArrayCollection();
 
-			$filePath = strtolower(get_class($model));
-			$filePath = 'public/images/' . str_replace('photo', '', $filePath);
+			$filePath = strtolower((new \ReflectionClass($model))->getShortName());
+			$filePath = 'images/' . str_replace('photo', '', $filePath);
 
 			/** @var UploadedFile $photo */
 			foreach ($photos as $photo) {
@@ -31,10 +31,10 @@
 				], $validationRules);
 
 				if ($validator->passes()) {
-					$photo->store($filePath, 'public');
+					$stored = $photo->store($filePath, 'public');
 
 					$relation = array_merge($relation, [
-						'filepath' => $photo,
+						'filepath' => $stored,
 					]);
 
 					$uploaded->add($model::create($relation)->save());

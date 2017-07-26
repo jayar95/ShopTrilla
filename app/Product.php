@@ -26,6 +26,7 @@
 	 * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereStoreId($value)
 	 * @method static \Illuminate\Database\Eloquent\Builder|\App\Product whereUpdatedAt($value)
 	 * @mixin \Eloquent
+	 * @property-read \Illuminate\Database\Eloquent\Collection|\App\ProductPhoto[] $photos
 	 */
 	class Product extends Model {
 		/**
@@ -44,5 +45,9 @@
 		 */
 		public function store() {
 			return $this->belongsTo('App\Store');
+		}
+
+		public function photos() {
+			return $this->hasMany('App\ProductPhoto');
 		}
 	}

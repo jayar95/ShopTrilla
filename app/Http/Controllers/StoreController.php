@@ -1,13 +1,10 @@
 <?php
-	namespace App\Http\Controllers\UserPanel;
+	namespace App\Http\Controllers;
 
-	use App\Http\Controllers\Controller;
-	use App\Store;
 	use Illuminate\Http\Request;
-	use Illuminate\Support\Facades\Auth;
 
-	class CreateStoreController extends Controller {
-		public function process(Request $request) {
+	class StoreController extends Controller {
+		public function create(Request $request) {
 			$this->validate($request, [
 				'name' => 'required',
 			]);

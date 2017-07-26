@@ -9,6 +9,6 @@
 		})->name('vendor.create-product.post');
 
 		Route::post('create-product', [
-			'uses' => 'Vendor\VendorPanelController@createProduct'
+			'uses' => 'VendorController@createProduct'
 		])->name('vendor.create-product.post');
 	});
