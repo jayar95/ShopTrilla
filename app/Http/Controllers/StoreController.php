@@ -4,6 +4,10 @@
 	use Illuminate\Http\Request;
 
 	class StoreController extends Controller {
+		/**
+		 * @param Request $request
+		 * @return \Illuminate\Http\RedirectResponse
+		 */
 		public function create(Request $request) {
 			$this->validate($request, [
 				'name' => 'required',

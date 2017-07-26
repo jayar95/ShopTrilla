@@ -9,6 +9,10 @@
 	use Illuminate\Support\Facades\Auth;
 
 	class VendorController extends Controller {
+		/**
+		 * @param Request $request
+		 * @return \Illuminate\Http\RedirectResponse
+		 */
 		public function createProduct(Request $request) {
 			$this->validate($request, [
 				'name' => 'required',
@@ -35,6 +39,9 @@
 				->with('success', 'Product created successfully');
 		}
 
+		/**
+		 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+		 */
 		public function sendApplication() {
 			$vendorApplication = VendorApplication::create([
 				'user' => Auth::user()->id,
