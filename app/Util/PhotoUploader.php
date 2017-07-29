@@ -22,7 +22,7 @@
 			$uploaded = new ArrayCollection();
 
 			$filePath = strtolower((new \ReflectionClass($model))->getShortName());
-			$filePath = 'images/' . str_replace('photo', '', $filePath);
+			$filePath = 'images/' . $filePath;
 
 			/** @var UploadedFile $photo */
 			foreach ($photos as $photo) {

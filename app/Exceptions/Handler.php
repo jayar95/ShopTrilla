@@ -19,6 +19,7 @@
 			\Illuminate\Database\Eloquent\ModelNotFoundException::class,
 			\Illuminate\Session\TokenMismatchException::class,
 			\Illuminate\Validation\ValidationException::class,
+			PermissionDeniedException::class,
 		];
 
 		/**
@@ -41,6 +42,11 @@
 		 * @return \Illuminate\Http\Response
 		 */
 		public function render($request, Exception $exception) {
+			switch($exception) {
+				case ($exception instanceof PermissionDeniedException):
+					return response()->view('errors.403', [], 403);
+			}
+
 			return parent::render($request, $exception);
 		}
 

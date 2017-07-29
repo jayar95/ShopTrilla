@@ -1,14 +1,14 @@
 <?php
-	Route::prefix('vendor')->group(function() {
+	Route::prefix('store-manager')->group(function() {
 		Route::get('/', function() {
 			return view('store-manager.base');
-		})->name('vendor.index');
+		})->name('store-manager.index');
 
 		Route::get('create-product', function() {
 			return view('store-manager.create-product');
-		})->name('vendor.create-product.post');
+		})->name('store-manager.create-product');
 
-		Route::post('create-product', [
-			'uses' => 'VendorController@createProduct'
-		])->name('vendor.create-product.post');
+		Route::get('products', [
+			'uses' => 'VendorController@productManager',
+		]);
 	});
